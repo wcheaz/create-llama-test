@@ -1,7 +1,6 @@
-nohup: ignoring input
 /home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/pydantic/_internal/_generate_schema.py:2249: UnsupportedFieldAttributeWarning: The 'validate_default' attribute with value True was provided to the `Field()` function, which has no effect in the context it was used. 'validate_default' is field-specific metadata, and can only be attached to a model field using `Annotated` metadata or by assignment. This may have happened because an `Annotated` type alias using the `type` statement was used, or if the `Field()` function was attached to a single member of a union type.
   warnings.warn(
-INFO:     Started server process [251729]
+INFO:     Started server process [40283]
 INFO:     Waiting for application startup.
 INFO:     deployments folder: /tmp/llama_deploy/deployments
 INFO:     rc folder: .llama_deploy_rc
@@ -9,193 +8,13 @@ INFO:     Application startup complete.
 INFO:     Uvicorn running on http://127.0.0.1:4501 (Press CTRL+C to quit)
 Skipping data after last boundary
 Using CPython 3.12.1 interpreter at: /home/ncheaz/git/create-llama-test/.venv/bin/python3
-Audited 2 packages in 20ms
+Audited 2 packages in 21ms
 INFO:     Loading index from src/storage...
 INFO:     Finished loading index from src/storage
-Progress: resolved 1, reused 0, downloaded 0, added 0
-Progress: resolved 117, reused 92, downloaded 0, added 0
-Progress: resolved 606, reused 557, downloaded 0, added 0
-Progress: resolved 694, reused 645, downloaded 0, added 0
- WARN  2 deprecated subdependencies found: @finom/zod-to-json-schema@3.24.11, intersection-observer@0.10.0
-Packages: +648
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Progress: resolved 698, reused 649, downloaded 0, added 607
-Progress: resolved 698, reused 649, downloaded 0, added 648, done
- WARN  Issues with peer dependencies found
-.
-├─┬ @llamaindex/workflow 1.1.24
-│ └── ✕ unmet peer @llamaindex/core@0.6.22: found 0.6.21
-└─┬ @llamaindex/server 0.2.10
-  └─┬ @llamaindex/chat-ui 0.5.16
-    ├─┬ vaul 0.9.9
-    │ ├── ✕ unmet peer react@"^16.8 || ^17.0 || ^18.0": found 19.2.3
-    │ └── ✕ unmet peer react-dom@"^16.8 || ^17.0 || ^18.0": found 19.2.3
-    └─┬ @llamaindex/pdf-viewer 1.3.0
-      ├─┬ react-window 1.8.9
-      │ ├── ✕ unmet peer react@"^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0": found 19.2.3
-      │ └── ✕ unmet peer react-dom@"^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0": found 19.2.3
-      ├─┬ @wojtekmaj/react-hooks 1.17.2
-      │ └── ✕ unmet peer react@"^16.8.0 || ^17.0.0 || ^18.0.0": found 19.2.3
-      └─┬ react-intersection-observer 9.5.1
-        └── ✕ unmet peer react@"^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0": found 19.2.3
-
-dependencies:
-+ @llamaindex/server 0.2.10 (0.4.1 is available)
-+ dotenv 16.6.1 (17.2.3 is available)
-
-devDependencies:
-+ @types/node 20.19.27 (25.0.3 is available)
-+ nodemon 3.1.11
-+ tsx 4.7.2 (4.21.0 is available)
-+ typescript 5.9.3
-
-╭ Warning ─────────────────────────────────────────────────────────────────────╮
-│                                                                              │
-│   Ignored build scripts: canvas@3.2.0, es5-ext@0.10.64, esbuild@0.19.12,     │
-│   sharp@0.34.5, tree-sitter@0.22.4.                                          │
-│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
-│   to run scripts.                                                            │
-│                                                                              │
-╰──────────────────────────────────────────────────────────────────────────────╯
-Done in 4.6s using pnpm v10.27.0
 Loading llama_index.core.storage.kvstore.simple_kvstore from src/storage/docstore.json.
 Loading llama_index.core.storage.kvstore.simple_kvstore from src/storage/index_store.json.
-Started Next.js app with PID 252472
-INFO:     127.0.0.1:58314 - "POST /deployments/create?reload=false&local=false&base_path=%2Fhome%2Fncheaz%2Fgit%2Fcreate-llama-test HTTP/1.1" 200 OK
-
-> llamaindex-server-ui@0.0.1 dev /tmp/llama_deploy/deployments/chat/ui
-> nodemon --exec tsx index.ts
-
-[33m[nodemon] 3.1.11[39m
-[33m[nodemon] to restart at any time, enter `rs`[39m
-[33m[nodemon] watching path(s): *.*[39m
-[33m[nodemon] watching extensions: ts,json[39m
-[32m[nodemon] starting `tsx index.ts`[39m
-node:events:485
-      throw er; // Unhandled 'error' event
-      ^
-
-Error: EBADF: bad file descriptor, read
-Emitted 'error' event on ReadStream instance at:
-    at emitErrorNT (node:internal/streams/destroy:170:8)
-    at errorOrDestroy (node:internal/streams/destroy:239:7)
-    at node:internal/fs/streams:272:9
-    at FSReqCallback.wrapper [as oncomplete] (node:fs:673:5) {
-  errno: -9,
-  code: 'EBADF',
-  syscall: 'read'
-}
-
-Node.js v23.11.1
- ELIFECYCLE  Command failed with exit code 1.
-
-The package @llamaindex/cloud has been deprecated since version 4.1.0
- * Please migrate to llama-cloud-services.
- * See the documentation: https://docs.cloud.llamaindex.ai
-
-
-The classes LlamaCloudFileService, LlamaCloudIndex and LlamaCloudRetriever have been moved to the package llama-cloud-services.
- * Please migrate your imports to llama-cloud-services, e.g. import { LlamaCloudIndex } from "llama-cloud-services";
- * See the documentation: https://docs.cloud.llamaindex.ai
-
-> Server listening at http://localhost:3000
- ○ Compiling / ...
- ✓ Compiled / in 14.2s (12070 modules)
-INFO:     127.0.0.1:35190 - "HEAD /deployments/chat/ui HTTP/1.1" 200 OK
- HEAD / 200 in 14470ms
- ○ Compiling /_not-found ...
- ✓ Compiled /_not-found in 1476ms (11952 modules)
- GET / 404 in 1612ms
- ✓ Compiled /favicon.ico in 395ms (6086 modules)
- GET /favicon.ico 200 in 493ms
- GET / 404 in 105ms
- GET /favicon.ico 200 in 5ms
- GET / 404 in 45ms
- GET /favicon.ico 200 in 7ms
- GET / 404 in 25ms
- GET /favicon.ico 200 in 10ms
-INFO:     127.0.0.1:34426 - "GET /deployments/chat/ui HTTP/1.1" 200 OK
- GET / 200 in 65ms
-INFO:     127.0.0.1:34426 - "GET /deployments/chat/ui/_next/static/media/e4af272ccee01ff0-s.p.woff2 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34438 - "GET /deployments/chat/ui/_next/static/css/app/layout.css?v=1767490558552 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34454 - "GET /deployments/chat/ui/_next/static/chunks/webpack.js?v=1767490558552 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34462 - "GET /deployments/chat/ui/_next/static/chunks/app-pages-internals.js HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34458 - "GET /deployments/chat/ui/_next/static/chunks/main-app.js?v=1767490558552 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34474 - "GET /deployments/chat/ui/_next/static/chunks/app/page.js HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34426 - "GET /deployments/chat/ui/config.js HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34484 - "WebSocket /deployments/chat/ui/_next/webpack-hmr" [accepted]
-INFO:     connection open
-INFO:     127.0.0.1:34458 - "GET /deployments/chat/ui/_next/static/chunks/_app-pages-browser_app_components_ui_chat_chat-section_tsx.js HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34462 - "GET /deployments/chat/ui/_next/static/css/_app-pages-browser_app_components_ui_chat_chat-section_tsx.css HTTP/1.1" 200 OK
- GET /favicon.ico 200 in 13ms
-INFO:     127.0.0.1:34426 - "GET /deployments/chat/ui/favicon.ico HTTP/1.1" 200 OK
-INFO:     127.0.0.1:34458 - "GET /deployments/chat/ui/llama.png HTTP/1.1" 200 OK
-INFO:     connection closed
- ○ Compiling /api/layout ...
- ✓ Compiled /_not-found in 2.6s (11978 modules)
- GET /api/components 200 in 2762ms
- GET /api/layout 200 in 2763ms
- GET / 404 in 1058ms
- GET /favicon.ico 200 in 7ms
-INFO:     127.0.0.1:34458 - "GET /deployments/chat/ui HTTP/1.1" 200 OK
- GET / 200 in 41ms
-INFO:     127.0.0.1:34458 - "GET /deployments/chat/ui/_next/static/css/app/layout.css?v=1767490564300 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48132 - "GET /deployments/chat/ui/config.js HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:48100 - "GET /deployments/chat/ui/_next/static/chunks/main-app.js?v=1767490564300 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48106 - "GET /deployments/chat/ui/_next/static/chunks/app-pages-internals.js HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48120 - "GET /deployments/chat/ui/_next/static/chunks/app/page.js HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48084 - "GET /deployments/chat/ui/_next/static/chunks/webpack.js?v=1767490564300 HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48138 - "WebSocket /deployments/chat/ui/_next/webpack-hmr" [accepted]
-INFO:     connection open
-INFO:     127.0.0.1:48106 - "GET /deployments/chat/ui/_next/static/css/_app-pages-browser_app_components_ui_chat_chat-section_tsx.css HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48100 - "GET /deployments/chat/ui/_next/static/chunks/_app-pages-browser_app_components_ui_chat_chat-section_tsx.js HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48100 - "GET /deployments/chat/ui/llama.png HTTP/1.1" 304 Not Modified
- GET /api/layout 200 in 9ms
-INFO:     127.0.0.1:48106 - "GET /deployments/chat/ui/api/layout HTTP/1.1" 200 OK
- GET /api/components 200 in 12ms
-INFO:     127.0.0.1:48084 - "GET /deployments/chat/ui/api/components HTTP/1.1" 200 OK
- GET /api/layout 200 in 5ms
-INFO:     127.0.0.1:48100 - "GET /deployments/chat/ui/api/layout HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48084 - "GET /deployments/chat/ui/_next/static/chunks/_app-pages-browser_lucide-react_0_460_0_react_19_2_3_node_modules_lucide-react_dist_esm_lucid-764c63.js HTTP/1.1" 200 OK
- GET /api/components 200 in 7ms
-INFO:     127.0.0.1:48106 - "GET /deployments/chat/ui/api/components HTTP/1.1" 200 OK
- GET /api/components 200 in 6ms
-INFO:     127.0.0.1:48084 - "GET /deployments/chat/ui/api/components HTTP/1.1" 200 OK
- GET /api/components 200 in 6ms
-INFO:     127.0.0.1:48106 - "GET /deployments/chat/ui/api/components HTTP/1.1" 200 OK
-INFO:     127.0.0.1:38144 - "POST /deployments/chat/tasks/create HTTP/1.1" 200 OK
-INFO:     127.0.0.1:38144 - "GET /deployments/chat/tasks/dce07bfd-c940-4838-aa5e-2365f71896b0/events?session_id=89226110-74fd-4e43-a15e-cbb8c47e029c&raw_event=true HTTP/1.1" 200 OK
-INFO:     127.0.0.1:38158 - "GET /deployments/chat/ui/llama.png HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:39684 - "POST /deployments/create?reload=false&local=false&base_path=%2Fhome%2Fncheaz%2Fgit%2Fcreate-llama-test HTTP/1.1" 500 Internal Server Error
 ERROR:    Exception in ASGI application
-Traceback (most recent call last):
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/workflows/context/context.py", line 696, in _step_worker
-    new_ev = await instrumented_step(**kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_index_instrumentation/dispatcher.py", line 386, in async_wrapper
-    result = await func(*args, **kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_index/core/agent/workflow/multi_agent_workflow.py", line 411, in run_agent_step
-    agent_output = await agent.take_step(
-                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_index/core/agent/workflow/function_agent.py", line 55, in take_step
-    async for last_chat_response in response:
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_index/core/llms/callbacks.py", line 89, in wrapped_gen
-    async for x in f_return_val:
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_index/llms/openai/base.py", line 789, in gen
-    async for response in await aclient.chat.completions.create(
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 2585, in create
-    return await self._post(
-           ^^^^^^^^^^^^^^^^^
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1794, in post
-    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1594, in request
-    raise self._make_status_error_from_response(err.response) from None
-openai.BadRequestError: Error code: 400 - {'error': {'message': 'Model Not Exist', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
-
-The above exception was the direct cause of the following exception:
-
 Traceback (most recent call last):
   File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
     result = await app(  # type: ignore[func-returns-value]
@@ -233,110 +52,63 @@ Traceback (most recent call last):
     raise exc
   File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
     await app(scope, receive, sender)
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 102, in app
-    await response(scope, receive, send)
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/responses.py", line 269, in __call__
-    with collapse_excgroups():
-  File "/home/ncheaz/.pyenv/versions/3.12.1/lib/python3.12/contextlib.py", line 158, in __exit__
-    self.gen.throw(value)
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
-    raise exc
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/responses.py", line 273, in wrap
-    await func()
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/responses.py", line 253, in stream_response
-    async for chunk in self.body_iterator:
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_deploy/apiserver/routers/deployments.py", line 177, in event_stream
-    await handler
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/workflows/workflow.py", line 479, in _run_workflow
-    raise exception_raised
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/workflows/context/context.py", line 705, in _step_worker
-    raise WorkflowRuntimeError(
-workflows.errors.WorkflowRuntimeError: Error in step 'run_agent_step': Error code: 400 - {'error': {'message': 'Model Not Exist', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
-INFO:     127.0.0.1:38158 - "POST /deployments/chat/tasks/create HTTP/1.1" 200 OK
-INFO:     127.0.0.1:38158 - "GET /deployments/chat/tasks/0616ca7c-cf6c-44ca-9add-1dbbe7ad1393/events?session_id=60eefdd5-5a01-4dd9-96c4-a6ae860cd028&raw_event=true HTTP/1.1" 200 OK
-ERROR:    Exception in ASGI application
-Traceback (most recent call last):
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/workflows/context/context.py", line 696, in _step_worker
-    new_ev = await instrumented_step(**kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_index_instrumentation/dispatcher.py", line 386, in async_wrapper
-    result = await func(*args, **kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_index/core/agent/workflow/multi_agent_workflow.py", line 411, in run_agent_step
-    agent_output = await agent.take_step(
-                   ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_index/core/agent/workflow/function_agent.py", line 55, in take_step
-    async for last_chat_response in response:
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_index/core/llms/callbacks.py", line 89, in wrapped_gen
-    async for x in f_return_val:
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_index/llms/openai/base.py", line 789, in gen
-    async for response in await aclient.chat.completions.create(
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 2585, in create
-    return await self._post(
-           ^^^^^^^^^^^^^^^^^
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1794, in post
-    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1594, in request
-    raise self._make_status_error_from_response(err.response) from None
-openai.BadRequestError: Error code: 400 - {'error': {'message': 'Model Not Exist', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
-    result = await app(  # type: ignore[func-returns-value]
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
-    return await self.app(scope, receive, send)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/fastapi/applications.py", line 1135, in __call__
-    await super().__call__(scope, receive, send)
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/applications.py", line 107, in __call__
-    await self.middleware_stack(scope, receive, send)
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
-    raise exc
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
-    await self.app(scope, receive, _send)
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/middleware/cors.py", line 85, in __call__
-    await self.app(scope, receive, send)
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
-    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-    raise exc
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-    await app(scope, receive, sender)
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
-    await self.app(scope, receive, send)
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/routing.py", line 716, in __call__
-    await self.middleware_stack(scope, receive, send)
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/routing.py", line 736, in app
-    await route.handle(scope, receive, send)
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/routing.py", line 290, in handle
-    await self.app(scope, receive, send)
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 115, in app
-    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-    raise exc
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-    await app(scope, receive, sender)
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 102, in app
-    await response(scope, receive, send)
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/responses.py", line 269, in __call__
-    with collapse_excgroups():
-  File "/home/ncheaz/.pyenv/versions/3.12.1/lib/python3.12/contextlib.py", line 158, in __exit__
-    self.gen.throw(value)
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/_utils.py", line 85, in collapse_excgroups
-    raise exc
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/responses.py", line 273, in wrap
-    await func()
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/starlette/responses.py", line 253, in stream_response
-    async for chunk in self.body_iterator:
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_deploy/apiserver/routers/deployments.py", line 177, in event_stream
-    await handler
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/workflows/workflow.py", line 479, in _run_workflow
-    raise exception_raised
-  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/workflows/context/context.py", line 705, in _step_worker
-    raise WorkflowRuntimeError(
-workflows.errors.WorkflowRuntimeError: Error in step 'run_agent_step': Error code: 400 - {'error': {'message': 'Model Not Exist', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_request_error'}}
+  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_deploy/apiserver/routers/deployments.py", line 72, in create_deployment
+    await manager.deploy(config, base_path, reload, local)
+  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_deploy/apiserver/deployment.py", line 469, in deploy
+    deployment = Deployment(
+                 ^^^^^^^^^^^
+  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_deploy/apiserver/deployment.py", line 70, in __init__
+    self._workflow_services: dict[str, Workflow] = self._load_services(config)
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_deploy/apiserver/deployment.py", line 236, in _load_services
+    module = importlib.import_module(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ncheaz/.pyenv/versions/3.12.1/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 994, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/tmp/llama_deploy/deployments/chat/src/workflow.py", line 35, in <module>
+    workflow = create_workflow()
+               ^^^^^^^^^^^^^^^^^
+  File "/tmp/llama_deploy/deployments/chat/src/workflow.py", line 21, in create_workflow
+    query_tool = enable_citation(get_query_engine_tool(index=index))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ncheaz/git/create-llama-test/src/query.py", line 42, in get_query_engine_tool
+    query_engine = create_query_engine(index, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ncheaz/git/create-llama-test/src/query.py", line 21, in create_query_engine
+    return index.as_query_engine(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_index/core/indices/base.py", line 514, in as_query_engine
+    return RetrieverQueryEngine.from_args(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_index/core/query_engine/retriever_query_engine.py", line 106, in from_args
+    response_synthesizer = response_synthesizer or get_response_synthesizer(
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_index/core/response_synthesizers/factory.py", line 63, in get_response_synthesizer
+    llm.metadata,
+    ^^^^^^^^^^^^
+  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_index/llms/openai/base.py", line 367, in metadata
+    context_window=openai_modelname_to_contextsize(self._get_model_name()),
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ncheaz/git/create-llama-test/.venv/lib/python3.12/site-packages/llama_index/llms/openai/utils.py", line 288, in openai_modelname_to_contextsize
+    raise ValueError(
+ValueError: Unknown model 'deepseek-chat'. Please provide a valid OpenAI model name in: o1, o1-2024-12-17, o1-pro, o1-pro-2025-03-19, o1-preview, o1-preview-2024-09-12, o1-mini, o1-mini-2024-09-12, o3-mini, o3-mini-2025-01-31, o3, o3-2025-04-16, o3-pro, o3-pro-2025-06-10, o4-mini, o4-mini-2025-04-16, gpt-4, gpt-4-32k, gpt-4-1106-preview, gpt-4-0125-preview, gpt-4-turbo-preview, gpt-4-vision-preview, gpt-4-1106-vision-preview, gpt-4-turbo-2024-04-09, gpt-4-turbo, gpt-4o, gpt-4o-audio-preview, gpt-4o-audio-preview-2024-12-17, gpt-4o-audio-preview-2024-10-01, gpt-4o-mini-audio-preview, gpt-4o-mini-audio-preview-2024-12-17, gpt-4o-2024-05-13, gpt-4o-2024-08-06, gpt-4o-2024-11-20, gpt-4.5-preview, gpt-4.5-preview-2025-02-27, chatgpt-4o-latest, gpt-4o-mini, gpt-4o-mini-2024-07-18, gpt-4-0613, gpt-4-32k-0613, gpt-4-0314, gpt-4-32k-0314, gpt-4.1, gpt-4.1-mini, gpt-4.1-nano, gpt-4.1-2025-04-14, gpt-4.1-mini-2025-04-14, gpt-4.1-nano-2025-04-14, gpt-3.5-turbo, gpt-3.5-turbo-16k, gpt-3.5-turbo-0125, gpt-3.5-turbo-1106, gpt-3.5-turbo-0613, gpt-3.5-turbo-16k-0613, gpt-3.5-turbo-0301, text-davinci-003, text-davinci-002, gpt-3.5-turbo-instruct, text-ada-001, text-babbage-001, text-curie-001, ada, babbage, curie, davinci, gpt-35-turbo-16k, gpt-35-turbo, gpt-35-turbo-0125, gpt-35-turbo-1106, gpt-35-turbo-0613, gpt-35-turbo-16k-0613
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [40283]

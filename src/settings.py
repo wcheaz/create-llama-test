@@ -22,12 +22,10 @@ def init_settings():
     llm_kwargs = {"model": model_name}
     if base_url := os.getenv("OPENAI_BASE_URL"):
         llm_kwargs["api_base"] = base_url
-        # For custom API endpoints like DeepSeek, we need to use a compatible model name
-        # and set the context window manually
+        # For custom API endpoints like DeepSeek, we need to set the context window manually
         if "deepseek" in base_url.lower():
-            # Use gpt-4.1 as a placeholder model name for compatibility
-            # The actual model will be determined by the API endpoint
-            llm_kwargs["model"] = "gpt-4.1"
+            # Use the actual model name from environment (deepseek-chat)
+            # Don't override it with a placeholder
             llm_kwargs["context_window"] = 128000  # DeepSeek context window
     Settings.llm = OpenAI(**llm_kwargs)
     
