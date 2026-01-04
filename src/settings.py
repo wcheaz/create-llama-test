@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 
 from llama_index.core import Settings
-from llama_index.embeddings.openai import OpenAIEmbedding
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.openai import OpenAI
 
 
@@ -18,13 +18,25 @@ def init_settings():
         raise RuntimeError("OPENAI_API_KEY is missing in environment variables")
     
     # Configure LLM with optional base URL for DeepSeek
-    llm_kwargs = {"model": os.getenv("MODEL") or "gpt-4.1"}
+    model_name = os.getenv("MODEL") or "gpt-4.1"
+    llm_kwargs = {"model": model_name}
     if base_url := os.getenv("OPENAI_BASE_URL"):
         llm_kwargs["api_base"] = base_url
+        # For custom API endpoints like DeepSeek, we need to use a compatible model name
+        # and set the context window manually
+        if "deepseek" in base_url.lower():
+            # Use gpt-4.1 as a placeholder model name for compatibility
+            # The actual model will be determined by the API endpoint
+            llm_kwargs["model"] = "gpt-4.1"
+            llm_kwargs["context_window"] = 128000  # DeepSeek context window
     Settings.llm = OpenAI(**llm_kwargs)
     
-    # Configure embedding model with optional base URL for DeepSeek
-    embed_kwargs = {"model": os.getenv("EMBEDDING_MODEL") or "text-embedding-3-large"}
-    if base_url := os.getenv("OPENAI_BASE_URL"):
-        embed_kwargs["api_base"] = base_url
-    Settings.embed_model = OpenAIEmbedding(**embed_kwargs)
+    # Configure Hugging Face embedding model
+    embed_model_name = os.getenv("EMBEDDING_MODEL") or "BAAI/bge-large-en-v1.5"
+    embed_device = os.getenv("EMBEDDING_DEVICE") or "cpu"
+    
+    Settings.embed_model = HuggingFaceEmbedding(
+        model_name=embed_model_name,
+        device=embed_device,
+        embed_batch_size=32
+    )
