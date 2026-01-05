@@ -25,13 +25,13 @@ class ChatEvent(Event):
     """Custom event for chat messages"""
     msg: str
 
-
 class DebugWorkflow(Workflow):
     """Debug version of the workflow with logging"""
     
     @step
     async def handle_start(self, ev: StartEvent) -> ChatEvent:
         logger.info(f"Workflow started with input: {ev}")
+        logger.info(f"All event attributes: {dir(ev)}")
         
         # Initialize settings and index
         load_dotenv()
@@ -45,13 +45,24 @@ class DebugWorkflow(Workflow):
         
         logger.info("Index loaded successfully")
         
-        # Extract user message from input
-        input_data = ev.get("input", {})
-        if isinstance(input_data, str):
-            input_data = {"user_msg": input_data}
+        # Extract user_msg directly from the event as discovered in debugging
+        user_msg = ev.get("user_msg", "")
+        chat_history = ev.get("chat_history", [])
         
-        user_msg = input_data.get("user_msg", "")
-        logger.info(f"User message: {user_msg}")
+        logger.info(f"Extracted user message: {user_msg}")
+        logger.info(f"Extracted chat history: {chat_history}")
+        
+        if not user_msg:
+            logger.error("No user message found in event!")
+            # Try fallback methods for debugging
+            logger.info(f"All event attributes: {dir(ev)}")
+            if hasattr(ev, '__dict__'):
+                logger.info(f"Event __dict__: {ev.__dict__}")
+            try:
+                for key, value in ev.items():
+                    logger.info(f"Event item {key}: {value}")
+            except Exception as e:
+                logger.error(f"Error iterating over event: {e}")
         
         return ChatEvent(msg=user_msg)
     
@@ -62,12 +73,15 @@ class DebugWorkflow(Workflow):
         # Get index (should be cached from first step)
         index = get_index()
         
-        # Create query tool with citations enabled
-        query_tool = enable_citation(get_query_engine_tool(index=index))
+        # Create query tool WITHOUT citations for testing
+        # CITATIONS DISABLED FOR TESTING - COMMENTED OUT
+        # query_tool = enable_citation(get_query_engine_tool(index=index))
+        query_tool = get_query_engine_tool(index=index)
         
         # Create a simple agent workflow for this query
         system_prompt = """You are a helpful assistant"""
-        system_prompt += CITATION_SYSTEM_PROMPT
+        # CITATIONS DISABLED FOR TESTING - COMMENTED OUT
+        # system_prompt += CITATION_SYSTEM_PROMPT
         
         agent = AgentWorkflow.from_tools_or_functions(
             tools_or_functions=[query_tool],
@@ -75,23 +89,28 @@ class DebugWorkflow(Workflow):
             system_prompt=system_prompt,
         )
         
-        # Run the agent
+        # Run agent
         logger.info("Running agent to generate response")
-        response = await agent.run(msg=ev.msg)
-        logger.info(f"Agent response generated: {str(response)[:100]}...")
-        
-        return StopEvent(result=response)
+        try:
+            # AgentWorkflow expects user_msg parameter, not msg
+            response = await agent.run(user_msg=ev.msg)
+            logger.info(f"Agent response generated: {str(response)[:100]}...")
+            logger.info("Preparing to send StopEvent")
+            stop_event = StopEvent(result=response)
+            logger.info("StopEvent created successfully")
+            return stop_event
+        except Exception as e:
+            logger.error(f"Error in agent execution: {e}")
+            logger.error(f"Error type: {type(e)}")
+            import traceback
+            logger.error(f"Traceback: {traceback.format_exc()}")
+            raise
     
-    @step
-    async def handle_stop(self, ev: StopEvent) -> StopEvent:
-        logger.info(f"Stop event received: {ev}")
-        return ev
 
 
 def create_debug_workflow() -> Workflow:
     """Create the debug workflow instance"""
     return DebugWorkflow()
-
 
 # Keep the original workflow for comparison
 def create_workflow() -> AgentWorkflow:
@@ -100,7 +119,7 @@ def create_workflow() -> AgentWorkflow:
     index = get_index()
     if index is None:
         raise RuntimeError(
-            "Index not found! Please run `uv run generate` to index the data first."
+            "Index not found! Please run `uv run generate` to index data first."
         )
     # Create a query tool with citations enabled
     query_tool = enable_citation(get_query_engine_tool(index=index))

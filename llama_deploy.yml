@@ -11,7 +11,10 @@ services:
     source:
       type: local
       name: src
-    path: src/workflow:workflow
+    # Original workflow (commented out for debugging)
+    # path: src/workflow:workflow
+    # Debug workflow (currently active)
+    path: src/debug_workflow:debug_workflow
     python-dependencies:
       - llama-index-llms-openai>=0.4.5
       - llama-index-core>=0.12.45
