@@ -22,3 +22,5 @@ ui:
   source:
     type: local
     name: ui
+  exclude:
+    - node_modules
