@@ -27,7 +27,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Configure LLM and Embedding Model
 
-You can configure [LLM model](https://ts.llamaindex.ai/docs/llamaindex/modules/llms) and [embedding model](https://ts.llamaindex.ai/docs/llamaindex/modules/embeddings) in the [settings file](src/app/settings.ts).
+This project uses DeepSeek for the LLM and BAAI (bge-large-en-v1.5) for embeddings. You can configure these in the [settings file](src/app/settings.ts) and [.env file](.env).
+
+The BAAI embedding model runs locally and doesn't require an API key, making it a cost-effective solution for generating embeddings.
 
 ## Use Case
 
