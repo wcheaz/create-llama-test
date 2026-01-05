@@ -74,13 +74,11 @@ class DebugWorkflow(Workflow):
         index = get_index()
         
         # Create query tool WITHOUT citations for testing
-        # CITATIONS DISABLED FOR TESTING - COMMENTED OUT
-        # query_tool = enable_citation(get_query_engine_tool(index=index))
+        # query_tool = enable_citation(get_query_engine_tool(index=index), workflow_compatible=True)
         query_tool = get_query_engine_tool(index=index)
         
         # Create a simple agent workflow for this query
         system_prompt = """You are a helpful assistant"""
-        # CITATIONS DISABLED FOR TESTING - COMMENTED OUT
         # system_prompt += CITATION_SYSTEM_PROMPT
         
         agent = AgentWorkflow.from_tools_or_functions(
@@ -94,7 +92,7 @@ class DebugWorkflow(Workflow):
         try:
             # AgentWorkflow expects user_msg parameter, not msg
             response = await agent.run(user_msg=ev.msg)
-            logger.info(f"Agent response generated: {str(response)[:100]}...")
+            logger.info(f"Agent response generated (full): {str(response)}")
             logger.info("Preparing to send StopEvent")
             stop_event = StopEvent(result=response)
             logger.info("StopEvent created successfully")
@@ -121,8 +119,8 @@ def create_workflow() -> AgentWorkflow:
         raise RuntimeError(
             "Index not found! Please run `uv run generate` to index data first."
         )
-    # Create a query tool with citations enabled
-    query_tool = enable_citation(get_query_engine_tool(index=index))
+    # Create a query tool with workflow-compatible citations enabled
+    query_tool = enable_citation(get_query_engine_tool(index=index), workflow_compatible=True)
 
     # Define the system prompt for the agent
     # Append the citation system prompt to the system prompt

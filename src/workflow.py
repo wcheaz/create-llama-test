@@ -17,8 +17,8 @@ def create_workflow() -> AgentWorkflow:
         raise RuntimeError(
             "Index not found! Please run `uv run generate` to index the data first."
         )
-    # Create a query tool with citations enabled
-    query_tool = enable_citation(get_query_engine_tool(index=index))
+    # Create a query tool with workflow-compatible citations enabled
+    query_tool = enable_citation(get_query_engine_tool(index=index), workflow_compatible=True)
 
     # Define the system prompt for the agent
     # Append the citation system prompt to the system prompt

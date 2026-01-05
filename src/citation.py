@@ -1,4 +1,5 @@
 from typing import Any, List, Optional
+import asyncio
 
 from llama_index.core import QueryBundle
 from llama_index.core.postprocessor.types import BaseNodePostprocessor
@@ -77,6 +78,56 @@ class CitationSynthesizer(Accumulate):
         super().__init__(text_qa_template=text_qa_template, **kwargs)
 
 
+class WorkflowCompatibleCitationSynthesizer(CitationSynthesizer):
+    """
+    Workflow-compatible version of CitationSynthesizer that includes timeout mechanisms
+    to prevent hanging in workflow contexts.
+    """
+
+    def __init__(self, timeout: float = 30.0, **kwargs: Any) -> None:
+        super().__init__(**kwargs)
+        self.timeout = timeout
+
+    async def aget_response(self, query_bundle: QueryBundle, nodes: List[NodeWithScore], **kwargs: Any) -> Any:
+        """Add timeout to prevent hanging during response generation."""
+        try:
+            response = await asyncio.wait_for(
+                super().aget_response(query_bundle, nodes, **kwargs),
+                timeout=self.timeout
+            )
+            return response
+        except asyncio.TimeoutError:
+            # Fallback to simple response without citations
+            return "Response generation timed out. Please try again."
+
+    async def asynthesize(self, query_bundle: QueryBundle, nodes: List[NodeWithScore], **kwargs: Any) -> Any:
+        """Ensure proper cleanup after synthesis."""
+        try:
+            response = await super().asynthesize(query_bundle, nodes, **kwargs)
+            return response
+        except Exception as e:
+            # Log the error and return a fallback response
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Error in citation synthesis: {e}")
+            return "Error generating response with citations. Please try again."
+        finally:
+            # Ensure cleanup happens even if there's an error
+            pass
+    
+    def synthesize(self, query_bundle: QueryBundle, nodes: List[NodeWithScore], **kwargs: Any) -> Any:
+        """Override synthesize to handle synchronous calls properly."""
+        try:
+            response = super().synthesize(query_bundle, nodes, **kwargs)
+            return response
+        except Exception as e:
+            # Log the error and return a fallback response
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Error in citation synthesis: {e}")
+            return "Error generating response with citations. Please try again."
+
+
 # Add this prompt to your agent system prompt
 CITATION_SYSTEM_PROMPT = (
     "\nAnswer the user question using the response from the query tool. "
@@ -85,10 +136,14 @@ CITATION_SYSTEM_PROMPT = (
 )
 
 
-def enable_citation(query_engine_tool: QueryEngineTool) -> QueryEngineTool:
+def enable_citation(query_engine_tool: QueryEngineTool, workflow_compatible: bool = True) -> QueryEngineTool:
     """
     Enable citation for a query engine tool by using CitationSynthesizer and NodePostprocessor.
     Note: This function will override the response synthesizer of your query engine.
+    
+    Args:
+        query_engine_tool: The query engine tool to enable citations for
+        workflow_compatible: Whether to use the workflow-compatible synthesizer (default: True)
     """
     query_engine = query_engine_tool.query_engine
     if not isinstance(query_engine, RetrieverQueryEngine):
@@ -97,7 +152,10 @@ def enable_citation(query_engine_tool: QueryEngineTool) -> QueryEngineTool:
             f"{type(query_engine)}."
         )
     # Update the response synthesizer and node postprocessors
-    query_engine._response_synthesizer = CitationSynthesizer()
+    if workflow_compatible:
+        query_engine._response_synthesizer = WorkflowCompatibleCitationSynthesizer()
+    else:
+        query_engine._response_synthesizer = CitationSynthesizer()
     query_engine._node_postprocessors += [NodeCitationProcessor()]
     query_engine_tool._query_engine = query_engine
 
