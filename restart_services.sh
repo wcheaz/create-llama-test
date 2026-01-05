@@ -36,6 +36,10 @@ echo "🧹 Cleaning up ports 4501 and 8000..."
 lsof -ti:4501 | xargs kill -9 2>/dev/null || true
 lsof -ti:8000 | xargs kill -9 2>/dev/null || true
 
+# Clean up temporary deployment directory
+echo "🧹 Cleaning up temporary deployment directory..."
+rm -rf /tmp/llama_deploy
+
 # Wait a moment for processes to fully stop
 sleep 3
 
