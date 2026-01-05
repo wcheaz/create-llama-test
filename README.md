@@ -9,7 +9,7 @@ npm install
 ```
 
 Then check the parameters that have been pre-configured in the `.env` file in this directory.
-Make sure you have set the `OPENAI_API_KEY` for the LLM.
+Make sure you have set the `DEEPSEEK_API_KEY` for the LLM (or `OPENAI_API_KEY` as a fallback).
 
 Second, generate the embeddings of the example documents in the `./data` directory:
 
