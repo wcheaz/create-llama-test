@@ -40,3 +40,5 @@ storage/
 .env
 
 hidden/*
+
+server.log

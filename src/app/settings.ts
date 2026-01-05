@@ -21,4 +21,7 @@ export function initSettings() {
     // Additional configuration options can be added here if needed
     // quantized: true, // Optional: Use quantized model for faster inference
   });
+  
+  // Add logging to verify embedding model configuration
+  console.log("Embedding model initialized:", Settings.embedModel);
 }
