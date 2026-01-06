@@ -83,6 +83,12 @@ check_prerequisites() {
         exit 1
     fi
     
+    # Check if DEEPSEEK_API_KEY is in .env file
+    if ! grep -q "DEEPSEEK_API_KEY=" .env; then
+        print_status $RED "Error: DEEPSEEK_API_KEY not found in .env file."
+        exit 1
+    fi
+    
     # Check if data directory exists and has files
     if [ ! -d "data" ] || [ -z "$(ls -A data 2>/dev/null)" ]; then
         print_status $RED "Error: data directory is empty or doesn't exist."
@@ -138,7 +144,7 @@ start_app() {
     
     # Generate embeddings if needed
     print_status $BLUE "Checking if embeddings need to be generated..."
-    if [ ! -d "./output" ] || [ -z "$(ls -A ./output 2>/dev/null)" ]; then
+    if [ ! -d "./src/storage" ] || [ -z "$(ls -A ./src/storage 2>/dev/null)" ]; then
         print_status $YELLOW "Generating embeddings..."
         uv run generate
         print_status $GREEN "Embeddings generated successfully"
@@ -148,7 +154,7 @@ start_app() {
     
     # Start API server in background
     print_status $YELLOW "Starting API server..."
-    uv run -m llama_deploy.apiserver > server.log 2>&1 &
+    source .env && uv run -m llama_deploy.apiserver > server.log 2>&1 &
     API_PID=$!
     print_status $GREEN "API server started with PID: $API_PID"
     
@@ -174,7 +180,7 @@ start_app() {
     
     # Deploy the workflow
     print_status $YELLOW "Deploying workflow..."
-    if uv run llamactl deploy llama_deploy.yml; then
+    if source .env && uv run llamactl deploy llama_deploy.yml; then
         print_status $GREEN "Workflow deployed successfully!"
     else
         print_status $RED "Failed to deploy workflow. Check server.log for details."

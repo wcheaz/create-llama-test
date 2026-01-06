@@ -59,7 +59,7 @@ echo -e "\n=== Step 2: Starting the application ==="
 
 # Generate embeddings if needed
 echo "Checking if embeddings need to be generated..."
-if [ ! -d "./output" ] || [ -z "$(ls -A ./output 2>/dev/null)" ]; then
+if [ ! -d "./src/storage" ] || [ -z "$(ls -A ./src/storage 2>/dev/null)" ]; then
     echo "Generating embeddings..."
     uv run generate
 else
@@ -68,7 +68,7 @@ fi
 
 # Start API server in background
 echo "Starting API server..."
-uv run -m llama_deploy.apiserver > server.log 2>&1 &
+source .env && uv run -m llama_deploy.apiserver > server.log 2>&1 &
 API_PID=$!
 echo "API server started with PID: $API_PID"
 
@@ -78,7 +78,7 @@ sleep 5
 
 # Deploy the workflow
 echo "Deploying workflow..."
-uv run llamactl deploy llama_deploy.yml
+source .env && uv run llamactl deploy llama_deploy.yml
 
 # Check if deployment was successful
 if [ $? -eq 0 ]; then

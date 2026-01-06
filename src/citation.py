@@ -79,9 +79,10 @@ class CitationSynthesizer(Accumulate):
 
 # Add this prompt to your agent system prompt
 CITATION_SYSTEM_PROMPT = (
-    "\nAnswer the user question using the response from the query tool. "
+    "\nAnswer the user question using ONLY the response from the query tool. "
     "It's important to respect the citation information in the response. "
-    "Don't mix up the citation_id, keep them at the correct fact."
+    "Don't mix up the citation_id, keep them at the correct fact. "
+    "If the query tool returns no relevant information, respond with 'I cannot find information about this topic in the provided knowledge base.'"
 )
 
 
