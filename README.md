@@ -32,6 +32,35 @@ uv run generate
 
 ## Running the Deployment
 
+### Option 1: Using Management Scripts (Recommended)
+
+We've provided management scripts to simplify starting and stopping your application:
+
+```bash
+# Start the application (stops any existing instances first)
+./manage_app.sh start
+
+# Check the status of all components
+./manage_app.sh status
+
+# Stop the application
+./manage_app.sh stop
+
+# Restart the application
+./manage_app.sh restart
+```
+
+For simpler use cases, you can also use:
+```bash
+# Quick restart (stops and starts)
+./restart_app.sh
+
+# Quick stop
+./stop_app.sh
+```
+
+### Option 2: Manual Steps
+
 At this point we have all we need to run this deployment. Ideally, we would have the API server already running
 somewhere in the cloud, but to get started let's start an instance locally. Run the following python script
 from a shell:
