@@ -90,8 +90,8 @@ check_prerequisites() {
     fi
     
     # Check if data directory exists and has files
-    if [ ! -d "data" ] || [ -z "$(ls -A data 2>/dev/null)" ]; then
-        print_status $RED "Error: data directory is empty or doesn't exist."
+    if [ ! -d "ui/data" ] || [ -z "$(ls -A ui/data 2>/dev/null)" ]; then
+        print_status $RED "Error: ui/data directory is empty or doesn't exist."
         exit 1
     fi
     

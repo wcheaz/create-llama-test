@@ -24,7 +24,7 @@ If you don't have uv installed, you can follow the instructions [here](https://d
 
 ## Generate Index
 
-Generate the embeddings of the documents in the `./data` directory:
+Generate the embeddings of the documents in the `./ui/data` directory:
 
 ```shell
 uv run generate
@@ -110,7 +110,7 @@ Note that the task_id and session_id are returned when creating a new task.
 
 ## Use Case
 
-We have prepared an [example workflow](./src/workflow.py) for the agentic RAG use case, where you can ask questions about the example documents in the [./data](./data) directory.
+We have prepared an [example workflow](./src/workflow.py) for the agentic RAG use case, where you can ask questions about the example documents in the [./ui/data](./ui/data) directory.
 To update the workflow, you can modify the code in [`src/workflow.py`](src/workflow.py).
 
 ## Customize the UI

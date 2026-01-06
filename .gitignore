@@ -11,3 +11,5 @@ node_modules/*
 .devcontainer
 
 uv.lock
+
+data/
