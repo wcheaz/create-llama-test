@@ -3,3 +3,8 @@ storage
 .env
 output
 .ui/
+
+hidden/*
+server.log
+node_modules/*
+
