@@ -7,4 +7,5 @@ output
 hidden/*
 server.log
 node_modules/*
-
+.vscode
+.devcontainer
