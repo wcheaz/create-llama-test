@@ -13,3 +13,4 @@ node_modules/*
 uv.lock
 
 data/*
+!*/101.pdf
