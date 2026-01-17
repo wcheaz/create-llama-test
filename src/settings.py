@@ -52,7 +52,9 @@ def init_settings():
     Settings.llm = DeepSeek(
         model=os.getenv("MODEL") or "deepseek-chat",
         api_key=os.getenv("DEEPSEEK_API_KEY"),
-        api_base=os.getenv("DEEPSEEK_API_BASE") or "https://api.deepseek.com"
+        api_base=os.getenv("DEEPSEEK_API_BASE") or "https://api.deepseek.com",
+        # Disable streaming to avoid JSON parsing issues
+        streaming=False,
     )
     
     # Initialize HuggingFace embeddings (using the BAAI model from your .env)
