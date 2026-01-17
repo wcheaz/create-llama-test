@@ -47,6 +47,8 @@ def create_workflow() -> AgentWorkflow:
         tools_or_functions=[query_tool],
         llm=Settings.llm,
         system_prompt=system_prompt,
+        # Disable streaming to avoid JSON parsing issues
+        verbose=True,
     )
 
 
