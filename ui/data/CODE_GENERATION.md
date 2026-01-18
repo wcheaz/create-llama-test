@@ -10,9 +10,9 @@ This document provides a comprehensive template for generating standardized proc
 ```
 
 - **Prefix (3 letters)**: Each letter represents a different classification level
-  - **First letter**: Major category (15+ options)
-  - **Second letter**: Subcategory
-  - **Third letter**: Specific type
+  - **First letter**: Industry (9 options)
+  - **Second letter**: Manufacturing method
+  - **Third letter**: Object shape/form
 - **Core (5 digits)**: Determines characteristics of the good
   - **MM**: Material type (20+ options)
   - **QQ**: Quality grade (20+ options)
@@ -21,81 +21,49 @@ This document provides a comprehensive template for generating standardized proc
 
 ## Prefix Structure (3 individual letters)
 
-### First Letter - Major Categories (15+ options)
+### First Letter - Major Categories (Industry Focus - 9 options)
 
-| Code | Category | Description |
+| Code | Industry | Description |
 |------|----------|-------------|
-| A | Agriculture | Agricultural products and equipment |
-| B | Building | Construction materials and supplies |
-| C | Chemical | Chemicals and chemical products |
-| E | Electrical | Electrical components and equipment |
-| F | Fasteners | Screws, bolts, nuts, and connectors |
-| G | General | General purpose items |
-| H | Hardware | Hardware tools and accessories |
-| I | Industrial | Industrial machinery and equipment |
-| M | Metal | Metal products and materials |
-| P | Plastic | Plastic products and materials |
-| R | Raw | Raw materials and unprocessed goods |
-| S | Safety | Safety equipment and supplies |
-| T | Technology | Technology and electronic components |
-| W | Wood | Wood products and materials |
-| X | Miscellaneous | Miscellaneous items not fitting other categories |
+| A | Aerospace | Aircraft, spacecraft, aviation components and systems |
+| C | Construction | Building materials, structural components, civil engineering |
+| E | Energy | Power generation, renewable energy, oil & gas components |
+| H | Healthcare | Medical devices, hospital equipment, pharmaceutical supplies |
+| M | Manufacturing | Production machinery, tools, factory equipment |
+| R | Retail | Consumer goods, commercial products, retail fixtures |
+| T | Technology | Electronics, computing hardware, communication equipment |
+| V | Transportation | Vehicles, transportation infrastructure, logistics |
+| Z | General | Fallback category for items not fitting other industries |
 
-### Second Letter - Subcategories
+### Second Letter - Manufacturing Method
 
-| Code | Subcategory | Description |
-|------|-------------|-------------|
-| A | Assembly | Assembled or pre-assembled items |
-| B | Bulk | Bulk materials or supplies |
-| C | Custom | Custom-made or specialized items |
-| D | Domestic | Domestic or household items |
-| E | Electronic | Electronic components |
-| F | Fabricated | Fabricated or manufactured items |
-| G | General | General purpose items |
-| H | Heavy | Heavy-duty items |
-| I | Industrial | Industrial grade items |
-| L | Light | Light-duty items |
-| M | Mechanical | Mechanical components |
-| N | New | New or innovative items |
-| O | Organic | Organic materials |
-| P | Processed | Processed materials |
-| R | Raw | Raw or unprocessed items |
-| S | Standard | Standard or off-the-shelf items |
-| T | Technical | Technical or specialized items |
-| U | Used | Used or refurbished items |
-| V | Variable | Variable size or specification |
-| Z | Special | Special order items |
+| Code | Method | Description |
+|------|--------|-------------|
+| A | Assembly | Pre-assembled or multi-component items |
+| C | Custom | Custom-made or specially fabricated items |
+| F | Fabricated | Machine-fabricated or manufactured items |
+| G | General | General purpose or standard method |
+| H | Hand-made | Manually crafted or artisanal items |
+| M | Molded | Injection molded, cast, or formed items |
+| P | Processed | Chemically or thermally processed materials |
+| R | Raw | Unprocessed or minimally processed items |
+| Z | Special | Special order or proprietary manufacturing |
 
-### Third Letter - Specific Types
+### Third Letter - Object Shape/Form
 
-| Code | Type | Description |
-|------|------|-------------|
-| A | Accessory | Accessories or add-ons |
-| B | Base | Base or foundation items |
-| C | Component | Individual components |
-| D | Device | Complete devices or units |
-| E | Equipment | Equipment or machinery |
-| F | Fixture | Fixed or permanent items |
-| G | Goods | Finished goods |
-| H | Hardware | Hardware items |
-| I | Instrument | Instruments or measuring tools |
-| J | Joint | Joint or connecting items |
-| K | Kit | Kits or sets |
-| L | Material | Raw materials |
-| M | Machine | Machines or machinery |
-| N | Part | Parts or spares |
-| O | Original | Original equipment |
-| P | Product | Complete products |
-| Q | Quality | Quality control items |
-| R | Replacement | Replacement items |
-| S | Supply | Supplies or consumables |
-| T | Tool | Tools or implements |
-| U | Unit | Complete units |
-| V | Variety | Assorted or mixed items |
-| W | Waste | Waste or byproducts |
-| X | Experimental | Experimental or test items |
-| Y | Yard | Yard or outdoor items |
-| Z | Auxiliary | Auxiliary or supporting items |
+| Code | Shape | Description |
+|------|-------|-------------|
+| B | Base | Foundation or base components |
+| C | Coil | Coiled, wound, or spiral shapes |
+| D | Disc | Disc, circular, or wheel-shaped items |
+| F | Film | Sheets, films, or thin layers |
+| K | Kit | Multi-component sets or collections |
+| L | Layer | Layered or laminated structures |
+| P | Panel | Flat panels or boards |
+| R | Rod | Rods, bars, or elongated shapes |
+| S | Sheet | Sheets, plates, or flat stock |
+| T | Tube | Tubular, hollow, or pipe-shaped items |
+| Z | Other | Other shapes not listed above |
 
 ## Core Structure (5 digits)
 
@@ -189,9 +157,9 @@ If more than 9 codes are generated in a single day, use letters after 9:
 
 ## Step-by-Step Code Generation Guide
 
-1. **Determine the major category** and select the appropriate first letter (A-Z)
-2. **Determine the subcategory** and select the appropriate second letter (A-Z)
-3. **Determine the specific type** and select the appropriate third letter (A-Z)
+1. **Determine the industry** and select the appropriate first letter (A-Z)
+2. **Determine the manufacturing method** and select the appropriate second letter (A-Z)
+3. **Determine the object shape** and select the appropriate third letter (A-Z)
 4. **Identify the material type** and select the corresponding 2-digit code
 5. **Determine the quality grade** and select the corresponding 2-digit code
 6. **Identify the size category** and select the corresponding 1-digit code
@@ -201,55 +169,35 @@ If more than 9 codes are generated in a single day, use letters after 9:
 
 ## Code Examples
 
-### Example 1: High-quality aluminum sheet for aerospace
-- Major Category: Metal (M)
-- Subcategory: Raw (R)
-- Specific Type: Material (L)
-- Material: Aluminum (02)
-- Quality: Aerospace (15)
-- Size: Large (4)
-- Date: January 15, 2026 (261)
-- **Code: MRL02154261**
+### Example 1: High-quality aluminum aerospace panel
+- Industry: Aerospace (A)
+- Manufacturing Method: Custom (C) - custom-made with tight tolerances
+- Object Shape: Panel (P) - wing panel/flat component
+- Material: Aluminum (02) - aluminum is non-ferrous
+- Quality: Aerospace (15) - aerospace specifications
+- Size: Large (4) - 150mm falls in 100mm to 500mm range
+- Date: January 15, 2026 (261) - first code of the day
+- **Code: ACP02154261**
 
-### Example 2: Standard plastic component
-- Major Category: Plastic (P)
-- Subcategory: Standard (S)
-- Specific Type: Component (C)
-- Material: Thermoplastic (03)
-- Quality: Standard (06)
-- Size: Small (2)
-- Date: March 10, 2026 (263)
-- **Code: PSC03062263**
+### Example 2: Standard plastic gear
+- Industry: Manufacturing (M) - for machinery components
+- Manufacturing Method: Molded (M) - injection molded plastic gear
+- Object Shape: Disc (D) - gear is disc-shaped
+- Material: Thermoplastic (03) - explicitly thermoplastic
+- Quality: Industrial Standard (11) - industrial standard quality
+- Size: Medium (3) - 50mm falls in 10mm to 100mm range
+- Date: March 10, 2026 (263) - third code of the day
+- **Code: MMD03113263**
 
-### Example 3: Industrial steel equipment
-- Major Category: Industrial (I)
-- Subcategory: Heavy (H)
-- Specific Type: Machine (M)
-- Material: Ferrous Metal (01)
-- Quality: Industrial Heavy (10)
-- Size: Extra Large (5)
-- Date: July 22, 2026 (264)
-- **Code: IHM01105264**
-
-### Example 4: Agricultural organic fertilizer
-- Major Category: Agriculture (A)
-- Subcategory: Organic (O)
-- Specific Type: Supply (S)
-- Material: Organic Chemical (15)
-- Quality: Standard (06)
-- Size: Bulk (6)
-- Date: September 5, 2026 (265)
-- **Code: AOS15066265**
-
-### Example 5: Electrical safety equipment
-- Major Category: Electrical (E)
-- Subcategory: General (G)
-- Specific Type: Equipment (E)
-- Material: Synthetic Rubber (09)
-- Quality: Safety (13)
-- Size: Medium (3)
-- Date: November 30, 2026 (266)
-- **Code: EGE09133266**
+### Example 3: Construction steel I-beam
+- Industry: Construction (C) - for building materials
+- Manufacturing Method: Fabricated (F) - machine-fabricated structural component
+- Object Shape: Rod (R) - beam/rod shape
+- Material: Ferrous Metal (01) - steel is a ferrous metal
+- Quality: Standard (06) - commercial quality
+- Size: Oversized (7) - 20 feet (~6m) is greater than 5m
+- Date: July 22, 2026 (264) - fourth code of the day
+- **Code: CFR01067264**
 
 ## Best Practices
 
@@ -266,72 +214,40 @@ If more than 9 codes are generated in a single day, use letters after 9:
 ```
 Format: [A][B][C][MM][QQ][S][YY][D]
 
-A - Major Category (15+ options):
-  A = Agriculture
-  B = Building
-  C = Chemical
-  E = Electrical
-  F = Fasteners
-  G = General
-  H = Hardware
-  I = Industrial
-  M = Metal
-  P = Plastic
-  R = Raw
-  S = Safety
+A - Industry (9 options):
+  A = Aerospace
+  C = Construction
+  E = Energy
+  H = Healthcare
+  M = Manufacturing
+  R = Retail
   T = Technology
-  W = Wood
-  X = Miscellaneous
+  V = Transportation
+  Z = General
 
-B - Subcategory (20+ options):
+B - Manufacturing Method (9 options):
   A = Assembly
-  B = Bulk
   C = Custom
-  D = Domestic
-  E = Electronic
   F = Fabricated
   G = General
-  H = Heavy
-  I = Industrial
-  L = Light
-  M = Mechanical
-  N = New
-  O = Organic
+  H = Hand-made
+  M = Molded
   P = Processed
   R = Raw
-  S = Standard
-  T = Technical
-  U = Used
-  V = Variable
   Z = Special
 
-C - Specific Type (26 options):
-  A = Accessory
+C - Object Shape/Form (12 options):
   B = Base
-  C = Component
-  D = Device
-  E = Equipment
-  F = Fixture
-  G = Goods
-  H = Hardware
-  I = Instrument
-  J = Joint
+  C = Coil
+  D = Disc
+  F = Film
   K = Kit
-  L = Material
-  M = Machine
-  N = Part
-  O = Original
-  P = Product
-  Q = Quality
-  R = Replacement
-  S = Supply
-  T = Tool
-  U = Unit
-  V = Variety
-  W = Waste
-  X = Experimental
-  Y = Yard
-  Z = Auxiliary
+  L = Layer
+  P = Panel
+  R = Rod
+  S = Sheet
+  T = Tube
+  Z = Other
 
 MM - Material Type (22 options):
   01 = Metal (Ferrous)
