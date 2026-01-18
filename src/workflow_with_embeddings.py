@@ -41,12 +41,18 @@ def create_workflow() -> AgentWorkflow:
     code_generation_tool = FunctionTool.from_defaults(
         fn=read_code_generation_file,
         name="read_code_generation_file",
-        description="Use this tool to read the procurement code generation template from the CODE_GENERATION.md file. This contains detailed information about how to generate standardized procurement codes including categories, material types, quality grades, and format specifications."
+        description="PRIMARY TOOL FOR INFORMATION GATHERING: Use this tool to read the complete procurement code generation template from the CODE_GENERATION.md file. This contains detailed information about how to generate standardized procurement codes including categories, material types, quality grades, and format specifications. Use this tool first when you need to understand the full context or explore the document structure. If information conflicts between this reading tool and the RAG query tool, prioritize information from this reading tool as it contains the complete and most up-to-date document."
     )
 
     # Define the system prompt for the agent
     # Append the citation system prompt to the system prompt
     system_prompt = """You are a helpful assistant that answers questions using information from the provided knowledge base.
+    
+    WORKFLOW STRATEGY:
+    1. For general information gathering and understanding the complete context, use the read_code_generation_file tool first to read the full document.
+    2. For specific procurement code generation and when you need to provide citations, use the query tool (RAG system) which provides citations.
+    3. CONFLICT RESOLUTION: If information conflicts between the reading tool and the RAG query tool, prioritize information from the reading tool as it contains the complete and most up-to-date document.
+    
     - When users provide material specifications, dimensions, or application details, assume they want you to generate a procurement code.
     - Use information directly from the knowledge base when available.
     - Make reasonable inferences when the exact topic isn't explicitly mentioned but related information exists.
@@ -63,7 +69,9 @@ def create_workflow() -> AgentWorkflow:
     - CRITICAL: Do not assume categories exist based on their names. Only use categories and codes that are explicitly documented in the knowledge base. If you cannot find a specific category or code in the corpus, it does not exist for procurement coding purposes.
     - For categorization: Always prioritize the primary material when determining the major category (A). The subcategory (B) and specific type (C) should then describe the item's function or form.
     - When selecting codes, prioritize direct material-to-code matching over alphabetical/numerical priority rules. Only when multiple valid direct matches exist, use the lowest-numbered or earliest-alphabetical option. For numeric codes, choose the smallest number (e.g., 01 over 04). For alphabetic codes, choose the earliest letter (e.g., A over D, E over G).
-    - Always cite your sources using the citation format provided.
+    - Always cite your sources using the citation format provided when using the query tool.
+    - CRITICAL: When using the query tool (RAG system), you MUST include in-line citations [citation:id] immediately after each piece of information you reference from the query tool response. Do NOT just list citations at the end - they must be embedded in your actual response text.
+    - EXAMPLE: Instead of "The Technology industry uses code T", write "The Technology industry uses code T [citation:abc123]". Each fact needs its own citation immediately after it.
     - When you have successfully generated a complete and valid procurement code, always print the generated code on a separate line at the very end of your response. This should only be done when the code is fully valid and complete."""
     system_prompt += CITATION_SYSTEM_PROMPT
 

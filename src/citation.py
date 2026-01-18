@@ -34,14 +34,17 @@ Where:
 
 Example:
 ```
-    Here is a response that uses context information [citation:90ca859f-4f32-40ca-8cd0-edfad4fb298b] 
-    and other ideas that don't use context information [citation:17b2cc9a-27ae-4b6d-bede-5ca60fc00ff4] .\n
-    The citation block will be displayed automatically with useful information for the user in the UI [citation:1c606612-e75f-490e-8374-44e79f818d19] .
+    The Technology industry uses code T [citation:90ca859f-4f32-40ca-8cd0-edfad4fb298b]. 
+    For manufacturing methods, Assembly uses code A [citation:17b2cc9a-27ae-4b6d-bede-5ca60fc00ff4]. 
+    Material type for steel is 01 [citation:1c606612-e75f-490e-8374-44e79f818d19].
 ```
+
+CRITICAL: Each piece of information MUST have its citation immediately after it, not at the end of the paragraph.
 
 ## Requirements:
 1. Always include citations for every fact from the context information in your response. 
 2. Make sure that the citation_id is correct with the context, don't mix up the citation_id with other information.
+3. CRITICAL: Include in-line citations [citation:id] immediately after each piece of information in your response text. Do NOT just list citations at the end.
 
 Now, you answer the query with citations:
 """
@@ -79,9 +82,13 @@ class CitationSynthesizer(Accumulate):
 
 # Add this prompt to your agent system prompt
 CITATION_SYSTEM_PROMPT = (
-    "\nAnswer the user question using ONLY the response from the query tool. "
+    "\nWhen using the query tool (RAG system), answer the user question using ONLY the response from the query tool. "
     "It's important to respect the citation information in the response. "
     "Don't mix up the citation_id, keep them at the correct fact. "
+    "The query tool provides citations in the format [citation:id] for each chunk of information. "
+    "CRITICAL: You MUST include these in-line citations [citation:id] in your actual response text, immediately after each piece of information you reference. "
+    "Do NOT just list citations at the end - they must be embedded within your response text. "
+    "EXAMPLE: Write 'The Technology industry uses code T [citation:abc123]' not 'The Technology industry uses code T. Sources: [citation:abc123]'. "
     "If the query tool returns no relevant information, respond with 'I cannot find information about this topic in the provided knowledge base.'"
 )
 

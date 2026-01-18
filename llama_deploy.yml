@@ -11,7 +11,7 @@ services:
     source:
       type: local
       name: src
-    path: src/workflow:workflow
+    path: src/workflow_with_embeddings:workflow
     python-dependencies:
       - llama-index-llms-openai>=0.4.5
       - llama-index-core>=0.12.45
