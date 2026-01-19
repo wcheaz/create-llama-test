@@ -1,3 +1,47 @@
+# Procurement Code Generation Rules
+
+## Workflow & Strategy
+1. **Conflict Resolution:** If information conflicts between this document and the RAG query tool, prioritize information from this document as it contains the complete and most up-to-date rules.
+2. **Inference:**
+   - Use information directly from the knowledge base when available.
+   - Make reasonable inferences when the exact topic isn't explicitly mentioned but related information exists.
+   - When making inferences, clearly indicate you're connecting related concepts.
+   - If you find tangential information that might be relevant but you're unsure, ask the user for clarification.
+   - Only respond with "I cannot find information about this topic" when the topic is completely unrelated.
+
+## Code Structure & Formatting
+The procurement code structure is **[A][B][C][MM][QQ][S][YY][D]**.
+It consists of exactly these components in this specific order:
+1. **[A]** Major Category
+2. **[B]** Subcategory
+3. **[C]** Specific Type
+4. **[MM]** Material Type
+5. **[QQ]** Quality Grade
+6. **[S]** Size Category
+7. **[YY]** Date Year
+8. **[D]** Date Sequence
+
+**Note:** There is no separate "application code" component.
+
+### Critical Formatting Rules
+- **Positioning:** Each component must be placed in its correct position. Do not confuse positions or place values incorrectly (e.g., a quality grade cannot be used as a major category).
+- **Categorization:** Always prioritize the **primary material** when determining the Major Category (A). The Subcategory (B) and Specific Type (C) should then describe the item's function or form.
+- **Specific Types:** Terms that describe *what* an item is (its form or function) belong in the Specific Type position (C), not in Major Category (A) or Subcategory (B).
+- **Selection Priority:** When selecting codes, prioritize direct material-to-code matching over alphabetical/numerical priority rules. 
+  - If multiple valid direct matches exist, use the lowest-numbered or earliest-alphabetical option (e.g., 01 over 04; A over D).
+
+## Date Handling Logic
+- **Year (YY):** If the user does not specify a date, always use the current date. The current year is **2026**, so the date component should start with "**26**".
+- **Sequence (D):** For the sequential day number:
+  - If there is no history to reference, always start with **1** for the first code of the day.
+  - Increment sequentially (2, 3, etc.) for subsequent codes generated on the same day.
+
+## strict Constraints
+- **No Hallucinations:** Every component of the procurement code (except the date) MUST be explicitly stated in the provided knowledge base. Do not invent categories, codes, or values that are not directly documented.
+- **Existence:** Do not assume categories exist based on their names. Only use categories and codes that are explicitly documented. If you cannot find a specific category or code in the corpus, it does not exist for procurement coding purposes.
+- **Missing Info:** When generating codes, if you are missing required components (like material type or quality grade), ask the user for that specific information rather than guessing.
+
+
 # Procurement Code Generation Template
 
 ## Overview
@@ -10,9 +54,9 @@ This document provides a comprehensive template for generating standardized proc
 ```
 
 - **Prefix (3 letters)**: Each letter represents a different classification level
-  - **First letter**: Industry (9 options)
-  - **Second letter**: Manufacturing method
-  - **Third letter**: Object shape/form
+  - **First letter**: Major category (15+ options)
+  - **Second letter**: Subcategory
+  - **Third letter**: Specific type
 - **Core (5 digits)**: Determines characteristics of the good
   - **MM**: Material type (20+ options)
   - **QQ**: Quality grade (20+ options)
@@ -157,9 +201,9 @@ If more than 9 codes are generated in a single day, use letters after 9:
 
 ## Step-by-Step Code Generation Guide
 
-1. **Determine the industry** and select the appropriate first letter (A-Z)
-2. **Determine the manufacturing method** and select the appropriate second letter (A-Z)
-3. **Determine the object shape** and select the appropriate third letter (A-Z)
+1. **Determine the major category** and select the appropriate first letter (A-Z)
+2. **Determine the subcategory** and select the appropriate second letter (A-Z)
+3. **Determine the specific type** and select the appropriate third letter (A-Z)
 4. **Identify the material type** and select the corresponding 2-digit code
 5. **Determine the quality grade** and select the corresponding 2-digit code
 6. **Identify the size category** and select the corresponding 1-digit code
@@ -169,35 +213,55 @@ If more than 9 codes are generated in a single day, use letters after 9:
 
 ## Code Examples
 
-### Example 1: High-quality aluminum aerospace panel
+### Example 1: High-quality aluminum sheet for aerospace
 - Industry: Aerospace (A)
-- Manufacturing Method: Custom (C) - custom-made with tight tolerances
-- Object Shape: Panel (P) - wing panel/flat component
-- Material: Aluminum (02) - aluminum is non-ferrous
-- Quality: Aerospace (15) - aerospace specifications
-- Size: Large (4) - 150mm falls in 100mm to 500mm range
-- Date: January 15, 2026 (261) - first code of the day
-- **Code: ACP02154261**
+- Manufacturing Method: Fabricated (F)
+- Object Shape: Sheet (S)
+- Material: Aluminum (02)
+- Quality: Aerospace (15)
+- Size: Large (4)
+- Date: January 15, 2026 (261)
+- **Code: AFS02154261**
 
-### Example 2: Standard plastic gear
-- Industry: Manufacturing (M) - for machinery components
-- Manufacturing Method: Molded (M) - injection molded plastic gear
-- Object Shape: Disc (D) - gear is disc-shaped
-- Material: Thermoplastic (03) - explicitly thermoplastic
-- Quality: Industrial Standard (11) - industrial standard quality
-- Size: Medium (3) - 50mm falls in 10mm to 100mm range
-- Date: March 10, 2026 (263) - third code of the day
-- **Code: MMD03113263**
+### Example 2: Injection molded plastic disc-shaped component for industrial machinery, 50mm diameter
+- Industry: Manufacturing (M)
+- Manufacturing Method: Molded (M)
+- Object Shape: Disc (D)
+- Material: Thermoplastic (03)
+- Quality: Standard (06)
+- Size: Small (2)
+- Date: March 10, 2026 (263)
+- **Code: MMD03062263**
 
-### Example 3: Construction steel I-beam
-- Industry: Construction (C) - for building materials
-- Manufacturing Method: Fabricated (F) - machine-fabricated structural component
-- Object Shape: Rod (R) - beam/rod shape
-- Material: Ferrous Metal (01) - steel is a ferrous metal
-- Quality: Standard (06) - commercial quality
-- Size: Oversized (7) - 20 feet (~6m) is greater than 5m
-- Date: July 22, 2026 (264) - fourth code of the day
-- **Code: CFR01067264**
+### Example 3: Steel protective panel for food processing machinery, 800mm x 600mm
+- Industry: Manufacturing (M)
+- Manufacturing Method: Fabricated (F)
+- Object Shape: Panel (P)
+- Material: Ferrous Metal (01)
+- Quality: Industrial Heavy (10)
+- Size: Extra Large (5)
+- Date: July 22, 2026 (264)
+- **Code: MFP01105264**
+
+### Example 4: Agricultural organic fertilizer
+- Industry: General (Z)
+- Manufacturing Method: Processed (P)
+- Object Shape: Other (Z)
+- Material: Organic Chemical (15)
+- Quality: Standard (06)
+- Size: Bulk (6)
+- Date: September 5, 2026 (265)
+- **Code: ZPZ15066265**
+
+### Example 5: Electrical safety gloves made of synthetic rubber for construction sites, standard quality, large size
+- Industry: Construction (C)
+- Manufacturing Method: Hand-made (H)
+- Object Shape: Other (Z)
+- Material: Synthetic Rubber (09)
+- Quality: Safety (13)
+- Size: Large (4)
+- Date: November 30, 2026 (266)
+- **Code: CHZ09134266**
 
 ## Best Practices
 

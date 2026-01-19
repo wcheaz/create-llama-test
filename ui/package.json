@@ -6,8 +6,10 @@
     "dev": "nodemon --exec tsx index.ts"
   },
   "dependencies": {
-    "@llamaindex/server": "0.2.10",
-    "dotenv": "^16.4.7"
+    "@llamaindex/core": "0.6.22",
+    "@llamaindex/server": "0.4.0",
+    "dotenv": "^16.4.7",
+    "zod": "4.3.5"
   },
   "devDependencies": {
     "@types/node": "^20.10.3",

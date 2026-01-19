@@ -54,6 +54,11 @@ stop_process "UI server" 3000
 # Stop workflow deployment
 stop_workflow
 
+# === CRITICAL FIX: Clean the temp folder to remove corrupted pnpm files ===
+echo "Cleaning up temporary deployment files (Fixes pnpm/npm conflicts)..."
+rm -rf /tmp/llama_deploy
+# ========================================================================
+
 # Step 2: Start the application
 echo -e "\n=== Step 2: Starting the application ==="
 
@@ -78,7 +83,8 @@ sleep 5
 
 # Deploy the workflow
 echo "Deploying workflow..."
-source .env && uv run llamactl deploy llama_deploy.yml
+# === CRITICAL FIX: Add CI=true to prevent TTY crashes if pnpm is still triggered ===
+source .env && CI=true uv run llamactl deploy llama_deploy.yml
 
 # Check if deployment was successful
 if [ $? -eq 0 ]; then
