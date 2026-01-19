@@ -35,6 +35,15 @@ def create_workflow() -> AgentWorkflow:
     - Always include citations for information from the CODE_GENERATION.md file using the format [citation:id] where id corresponds to the specific text chunk that contains the information.
     - When you have successfully generated a complete and valid procurement code, always print the generated code on a separate line at the very end of your response. This should only be done when the code is fully valid and complete."""
 
+    # Log the system prompt for debugging
+    print("\n" + "="*80)
+    print("🔧 WORKFLOW SYSTEM PROMPT START")
+    print("="*80)
+    print(system_prompt)
+    print("="*80)
+    print("🏁 WORKFLOW SYSTEM PROMPT END")
+    print("="*80 + "\n")
+
     return AgentWorkflow.from_tools_or_functions(
         tools_or_functions=[code_generation_tool],
         llm=Settings.llm,

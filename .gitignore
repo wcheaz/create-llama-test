@@ -6,6 +6,7 @@ output
 
 hidden/*
 server.log
+*.log
 node_modules/
 ui/node_modules/
 .vscode

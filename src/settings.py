@@ -3,6 +3,7 @@ import os
 from llama_index.core import Settings
 from llama_index.llms.deepseek import DeepSeek
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from src.llm_logger import LoggingLLM
 
 
 def load_env_file(env_path):
@@ -48,14 +49,8 @@ def init_settings():
         else:
             raise RuntimeError(f"DEEPSEEK_API_KEY is missing in environment variables. No .env file found at {env_file}")
     
-    # Initialize DeepSeek LLM
-    Settings.llm = DeepSeek(
-        model=os.getenv("MODEL") or "deepseek-chat",
-        api_key=os.getenv("DEEPSEEK_API_KEY"),
-        api_base=os.getenv("DEEPSEEK_API_BASE") or "https://api.deepseek.com",
-        # Disable streaming to avoid JSON parsing issues
-        streaming=False,
-    )
+    # Initialize LoggingLLM wrapper around DeepSeek
+    Settings.llm = LoggingLLM()
     
     # Initialize HuggingFace embeddings (using the BAAI model from your .env)
     Settings.embed_model = HuggingFaceEmbedding(

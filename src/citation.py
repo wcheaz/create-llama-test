@@ -1,3 +1,4 @@
+import time
 from typing import Any, List, Optional
 
 from llama_index.core import QueryBundle
@@ -77,6 +78,24 @@ class CitationSynthesizer(Accumulate):
         text_qa_template = kwargs.pop("text_qa_template", None)
         if text_qa_template is None:
             text_qa_template = PromptTemplate(template=CITATION_PROMPT)
+            
+            # Log the citation prompt for debugging
+            print("\n" + "="*80)
+            print("📋 CITATION PROMPT TEMPLATE START")
+            print("="*80)
+            print(CITATION_PROMPT)
+            print("="*80)
+            print("🏁 CITATION PROMPT TEMPLATE END")
+            print("="*80 + "\n")
+            
+            # Also write to log file
+            timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+            with open("llm_prompts.log", "a", encoding="utf-8") as f:
+                f.write(f"[{timestamp}] CITATION PROMPT TEMPLATE:\n")
+                f.write(f"{'-'*60}\n")
+                f.write(f"{CITATION_PROMPT}\n")
+                f.write(f"{'-'*60}\n\n")
+            
         super().__init__(text_qa_template=text_qa_template, **kwargs)
 
 
@@ -89,7 +108,8 @@ CITATION_SYSTEM_PROMPT = (
     "CRITICAL: You MUST include these in-line citations [citation:id] in your actual response text, immediately after each piece of information you reference. "
     "Do NOT just list citations at the end - they must be embedded within your response text. "
     "EXAMPLE: Write 'The Technology industry uses code T [citation:abc123]' not 'The Technology industry uses code T. Sources: [citation:abc123]'. "
-    "If the query tool returns no relevant information, respond with 'I cannot find information about this topic in the provided knowledge base.'"
+    "If the query tool returns no relevant information, respond with 'I cannot find information about this topic in the provided knowledge base.' "
+    "REMINDER: For code generation requests, you MUST use the read_code_generation_file tool BEFORE using this query tool. The system monitors actual tool calls, not just claims."
 )
 
 

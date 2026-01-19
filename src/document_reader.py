@@ -48,6 +48,7 @@ Standard commercial quality has code 06 [citation:quality-grades].
 1. Include citations for every fact from the context
 2. Place citations immediately after the information they support
 3. Use meaningful section names instead of node IDs
+4. REMINDER: This tool should only be used AFTER the read_code_generation_file tool has been called for code generation requests. The system monitors actual tool calls, not just claims.
 """
 
 
@@ -112,6 +113,24 @@ class AgentCitationSynthesizer(Accumulate):
         text_qa_template = kwargs.pop("text_qa_template", None)
         if text_qa_template is None:
             text_qa_template = PromptTemplate(template=AGENT_CITATION_PROMPT)
+            
+            # Log the document reader citation prompt for debugging
+            print("\n" + "="*80)
+            print("📚 DOCUMENT READER CITATION PROMPT START")
+            print("="*80)
+            print(AGENT_CITATION_PROMPT)
+            print("="*80)
+            print("🏁 DOCUMENT READER CITATION PROMPT END")
+            print("="*80 + "\n")
+            
+            # Also write to log file
+            timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+            with open("llm_prompts.log", "a", encoding="utf-8") as f:
+                f.write(f"[{timestamp}] DOCUMENT READER CITATION PROMPT:\n")
+                f.write(f"{'-'*60}\n")
+                f.write(f"{AGENT_CITATION_PROMPT}\n")
+                f.write(f"{'-'*60}\n\n")
+            
         super().__init__(text_qa_template=text_qa_template, **kwargs)
 
 

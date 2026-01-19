@@ -19,6 +19,26 @@ def create_query_engine(index: BaseIndex, **kwargs: Any) -> BaseQueryEngine:
     if "similarity_top_k" not in kwargs and top_k > 0:
         kwargs["similarity_top_k"] = top_k
 
+    # Log the RAG query parameters for debugging
+    print("\n" + "="*80)
+    print("🔍 RAG QUERY ENGINE PARAMETERS START")
+    print("="*80)
+    print(f"Top K: {top_k}")
+    print(f"Additional kwargs: {kwargs}")
+    print("="*80)
+    print("🏁 RAG QUERY ENGINE PARAMETERS END")
+    print("="*80 + "\n")
+    
+    # Also write to log file
+    import time
+    timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
+    with open("llm_prompts.log", "a", encoding="utf-8") as f:
+        f.write(f"[{timestamp}] RAG QUERY ENGINE PARAMETERS:\n")
+        f.write(f"{'-'*60}\n")
+        f.write(f"Top K: {top_k}\n")
+        f.write(f"Additional kwargs: {kwargs}\n")
+        f.write(f"{'-'*60}\n\n")
+
     return index.as_query_engine(**kwargs)
 
 
