@@ -53,9 +53,16 @@ def init_settings():
         model=os.getenv("MODEL") or "deepseek-chat",
         api_key=os.getenv("DEEPSEEK_API_KEY"),
         api_base=os.getenv("DEEPSEEK_API_BASE") or "https://api.deepseek.com",
+        context_window=int(os.getenv("LLM_CONTEXT_WINDOW") or 128000),
+        max_tokens=int(os.getenv("LLM_MAX_TOKENS") or 8192),
         # Disable streaming to avoid JSON parsing issues
         streaming=False,
     )
+    # Manually set context window as DeepSeek class might default to 3900
+    Settings.llm.context_window = int(os.getenv("LLM_CONTEXT_WINDOW") or 128000)
+    # Also update metadata if needed, though usually context_window property delegates to it or vice versa
+    # But just in case
+    Settings.llm.metadata.context_window = int(os.getenv("LLM_CONTEXT_WINDOW") or 128000)
     
     # Initialize HuggingFace embeddings (using the BAAI model from your .env)
     Settings.embed_model = HuggingFaceEmbedding(

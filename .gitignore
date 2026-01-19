@@ -5,6 +5,7 @@ output
 .ui/
 
 hidden/*
+*.log
 server.log
 node_modules/
 ui/node_modules/
