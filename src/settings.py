@@ -48,6 +48,14 @@ def init_settings():
         else:
             raise RuntimeError(f"DEEPSEEK_API_KEY is missing in environment variables. No .env file found at {env_file}")
     
+    
+    # Initialize Debug Logger
+    from src.debug_logger import LLMDebugHandler
+    from llama_index.core.callbacks import CallbackManager
+    
+    debug_handler = LLMDebugHandler(context_window=int(os.getenv("LLM_CONTEXT_WINDOW") or 128000))
+    Settings.callback_manager = CallbackManager([debug_handler])
+
     # Initialize DeepSeek LLM
     Settings.llm = DeepSeek(
         model=os.getenv("MODEL") or "deepseek-chat",
@@ -57,6 +65,7 @@ def init_settings():
         max_tokens=int(os.getenv("LLM_MAX_TOKENS") or 8192),
         # Disable streaming to avoid JSON parsing issues
         streaming=False,
+        callback_manager=Settings.callback_manager,
     )
     # Manually set context window as DeepSeek class might default to 3900
     Settings.llm.context_window = int(os.getenv("LLM_CONTEXT_WINDOW") or 128000)
