@@ -1,6 +1,7 @@
 __pycache__
 storage
 .env
+.env*
 output
 .ui/
 
